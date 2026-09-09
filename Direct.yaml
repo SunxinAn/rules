@@ -5,7 +5,7 @@ payload:
     - +.geforce.cn
     - +.gputechconf.cn
     - +.nvidia.cn
-    - cn.download.nvidia.com
+    - +.download.nvidia.com
     - +.googleapis.cn
     - +.xn--ngstr-lra8j.com
     - redirector.c.play.google.com
