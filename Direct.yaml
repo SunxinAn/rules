@@ -1,15 +1,16 @@
 payload:
+    # Wechat
     - +.sh-farm.com
     - +.zhtxcom.com
+    # AMD
     - www.amd.com
+    # nvidia
     - +.geforce.cn
     - +.gputechconf.cn
     - +.nvidia.cn
     - +.download.nvidia.com
     - +.ota-downloads.nvidia.com
-    - +.googleapis.cn
-    - +.xn--ngstr-lra8j.com
-    - redirector.c.play.google.com
+    # speedtest
     - www.speedtest.net.cdn.cloudflare.net
     - +.cdnst.net
     - +.cellmaps.com
@@ -23,3 +24,7 @@ payload:
     - +.speedtestcustom.com
     - +.webtest.net
     - +.ookla-speedtest-central.hgconair.hgc.com.hk
+    # google play
+    #- +.googleapis.cn
+    #- +.xn--ngstr-lra8j.com
+    #- redirector.c.play.google.com
