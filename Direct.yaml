@@ -25,6 +25,7 @@ payload:
     - +.webtest.net
     - +.ookla-speedtest-central.hgconair.hgc.com.hk
     # googleplay
-    - +.googleapis.cn
-    - +.xn--ngstr-lra8j.com
-    - +.connectivitycheck.gstatic.com
+    - redirector.c.play.google.com
+    # - +.googleapis.cn
+    # - +.xn--ngstr-lra8j.com
+    # - +.connectivitycheck.gstatic.com
