@@ -27,5 +27,5 @@ payload:
     # googleplay
     # - redirector.c.play.google.com
     - +.googleapis.cn
-    # - +.xn--ngstr-lra8j.com
+    - +.xn--ngstr-lra8j.com
     - +.connectivitycheck.gstatic.com
