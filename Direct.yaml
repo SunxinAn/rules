@@ -27,3 +27,4 @@ payload:
     # googleplay
     - +.googleapis.cn
     - +.xn--ngstr-lra8j.com
+    - +.connectivitycheck.gstatic.com
