@@ -1,9 +1,14 @@
 payload:
+    # iptv
     - +.live.ottiptv.cc
-    - +.soulapp.me
-    - +.soulwonderland.com
     - +.cdnlab.live
+    # av
     - +.jable.tv
     - +.mushroomtrack.com
+    # app
     - +.huarun.win
     - +.clash.md
+    # googleplay
+    - +.googleapis.cn
+    - +.googleapis.com
+    - +.xn--ngstr-lra8j.com
