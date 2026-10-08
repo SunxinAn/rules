@@ -1,4 +1,6 @@
 payload:
+    # Zspace
+    - +.zspace.link
     # Wechat
     - +.sh-farm.com
     - +.zhtxcom.com
