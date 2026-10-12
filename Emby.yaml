@@ -1,4 +1,6 @@
 payload:
     # uhd
-    - +.uhdnow.com
-    - +.uhdgo.com
+    - v1.uhdnow.com
+    - v1.uhdgo.com
+    - v1-vod1.uhdnow.com
+    - v1-vod2.uhdnow.com
