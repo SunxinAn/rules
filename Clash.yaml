@@ -1,7 +1,7 @@
 # Airport
 proxy-providers:
   V2:
-    url: "订阅链接"
+    url: ""
     type: http
     interval: 86400
     health-check:
