@@ -81,9 +81,8 @@ dns:
 # 出站策略
 proxy-groups:
   - {name: 🚀, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '^(?!.*(剩余|套餐|建议|官网)).*$'}
-  - {name: 🔍, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇭🇰, 🇯🇵, 🇸🇬, 🇺🇸]}
-  - {name: 💬, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵, 🇸🇬, 🇺🇸]}
   - {name: 🍿, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇸🇬, 🇭🇰, 🇯🇵, 🇺🇸]}
+  - {name: 💬, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵, 🇸🇬, 🇺🇸]}
   - {name: 🇭🇰, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i).*香港.*'}
   - {name: 🇯🇵, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i).*日本.*'}
   - {name: 🇸🇬, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i).*新加坡.*'}
@@ -96,7 +95,7 @@ rules:
   - RULE-SET,private-ip,DIRECT,no-resolve
   # Personal
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,Proxy,🚀
+  - RULE-SET,Proxy,🍿
   - RULE-SET,Emby,🍿
   # Direct
   - RULE-SET,apple-cn,DIRECT
@@ -105,11 +104,11 @@ rules:
   # Proxy
   - RULE-SET,openai,💬
   - RULE-SET,category-ai-!cn,💬
-  - RULE-SET,google,🔍
-  - RULE-SET,x,🔍
-  - RULE-SET,meta,🔍
-  - RULE-SET,telegram,🚀
-  - RULE-SET,telegram-ip,🚀
+  - RULE-SET,google,🍿
+  - RULE-SET,x,🍿
+  - RULE-SET,meta,🍿
+  - RULE-SET,telegram,🍿
+  - RULE-SET,telegram-ip,🍿
   # Ads
   - RULE-SET,category-ads-all,REJECT
   # Cn
