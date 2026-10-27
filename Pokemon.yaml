@@ -80,14 +80,14 @@ dns:
     - https://dns.google/dns-query
 # 出站策略
 proxy-groups:
-  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true}
-  - {name: 💬ChatGPT, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵优选, 🇺🇸优选, 🤖优选, 🚀Proxy]}
-  - {name: 🔍Google, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸优选, 🤖优选, 🇯🇵优选, 🚀Proxy]}
-  - {name: 🍿Emby, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖优选, 🇺🇸优选, 🇯🇵优选, 🚀Proxy]}
+  - {name: 🚀, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)原生"}
+  - {name: 💬, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖, 🇯🇵, 🇸🇬, 🇺🇸, 🚀]}
+  - {name: 🔍, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸, 🇭🇰, 🇯🇵, 🇸🇬, 🤖, 🚀]}
+  - {name: 🍿, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸, 🇭🇰, 🇯🇵, 🇸🇬, 🚀]}
   - {name: 🇭🇰, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)香港"}
   - {name: 🇯🇵, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)日本"}
   - {name: 🇸🇬, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)新加坡"}
-  - {name: 🇺🇸, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)美国"}
+  - {name: 🇺🇸, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?=.*(美国))^((?!(原生)).)*$"}
   - {name: 🤖, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)原生"}
   - {name: 🕸Match, type: select, proxies: [DIRECT, 🚀Proxy]}
 #分流规则
@@ -97,28 +97,28 @@ rules:
   - RULE-SET,private-ip,DIRECT,no-resolve
   # Personal
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,Proxy,🚀Proxy
-  - RULE-SET,Emby,🍿Emby
+  - RULE-SET,Proxy,🚀
+  - RULE-SET,Emby,🍿
   # Direct
   - RULE-SET,apple-cn,DIRECT
   - RULE-SET,apple@cn,DIRECT
   - RULE-SET,microsoft@cn,DIRECT
   # Proxy
-  - RULE-SET,openai,💬ChatGPT
-  - RULE-SET,category-ai-!cn,💬ChatGPT
-  - RULE-SET,google,🔍Google
-  - RULE-SET,x,🔍Google
-  - RULE-SET,meta,🔍Google
-  - RULE-SET,telegram,🚀Proxy
-  - RULE-SET,telegram-ip,🚀Proxy
+  - RULE-SET,openai,💬
+  - RULE-SET,category-ai-!cn,💬
+  - RULE-SET,google,🔍
+  - RULE-SET,x,🔍
+  - RULE-SET,meta,🔍
+  - RULE-SET,telegram,🚀
+  - RULE-SET,telegram-ip,🚀
   # Ads
   - RULE-SET,category-ads-all,REJECT
   # Cn
   - RULE-SET,cn,DIRECT
   - RULE-SET,cn-ip,DIRECT,no-resolve
   # Gfw
-  - RULE-SET,gfw,🚀Proxy
-  - RULE-SET,geolocation-!cn,🚀Proxy
+  - RULE-SET,gfw,🚀
+  - RULE-SET,geolocation-!cn,🚀
   # Match
   - MATCH,🕸Match
 # 规则集锚点
