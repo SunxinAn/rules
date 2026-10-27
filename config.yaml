@@ -90,14 +90,13 @@ dns:
 # 出站策略
 proxy-groups:
   - {name: 🚀, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '^(?!.*(剩余|套餐|建议|官网)).*$'}
-  - {name: 🔍, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇭🇰, 🇯🇵, 🇸🇬, 🇺🇸, 🚀]}
-  - {name: 💬, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵, 🇸🇬, 🇺🇸, 🤖, 🚀]}
-  - {name: 🍿, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇸🇬, 🇭🇰, 🇯🇵, 🇺🇸, 🚀]}
+  - {name: 🔍, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇭🇰, 🇯🇵, 🇸🇬, 🇺🇸]}
+  - {name: 💬, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵, 🇸🇬, 🇺🇸]}
+  - {name: 🍿, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇸🇬, 🇭🇰, 🇯🇵, 🇺🇸]}
   - {name: 🇭🇰, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i).*香港.*'}
   - {name: 🇯🇵, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i).*日本.*'}
   - {name: 🇸🇬, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i).*新加坡.*'}
-  - {name: 🇺🇸, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '^(?=.*美国)(?!.*原生).*$'}
-  - {name: 🤖, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '^(?=.*(原生|reality))(?!.*香港).*$'}
+  - {name: 🇺🇸, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i).*美国.*'}
   - {name: 🕸Match, type: select, proxies: [DIRECT, 🚀]}
 #分流规则
 rules:
