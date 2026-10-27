@@ -73,7 +73,7 @@ dns:
     - https://dns.google/dns-query
 # 出站策略
 proxy-groups:
-  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?=.*(reality))^((?!(日本2|韩国1)).)*$"}
+  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true}
   - {name: 💬ChatGPT, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵优选, 🇺🇸优选, 🤖优选, 🚀Proxy]}
   - {name: 🔍Google, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸优选, 🤖优选, 🇯🇵优选, 🚀Proxy]}
   - {name: 🍿Emby, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖优选, 🇺🇸优选, 🇯🇵优选, 🚀Proxy]}
