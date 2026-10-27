@@ -1,0 +1,160 @@
+# Airport
+proxy-providers:
+  Pokemon:
+    url: "https://link123.52pokemon66.cc/api/v1/client/subscribe?token=01a43902f910ccbf0c42d25e3fc4f098"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: DIRECT
+# 全局配置 
+tproxy-port: 7893
+allow-lan: true
+ipv6: true
+mode: Rule
+log-level: warning
+find-process-mode: off
+unified-delay: true
+tcp-concurrent: true
+geodata-mode: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+experimental:
+  ignore-resolve-fail: true
+# ui
+external-controller: 0.0.0.0:9999
+external-ui: ui
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+secret: 
+# 嗅探
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+# DNS模块
+dns:
+  enable: true
+  ipv6: true
+  listen: :1053
+  respect-rules: true
+  use-system-hosts: true
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.0/8
+  fake-ip-range6: fc00::/16
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - RULE-SET,fakeip-filter,real-ip
+    - RULE-SET,Direct,real-ip
+    - RULE-SET,cn,real-ip
+    - MATCH,fake-ip
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  nameserver-policy:
+    'rule-set:cn':
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+# 出站策略
+proxy-groups:
+  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true}
+  - {name: 💬ChatGPT, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵优选, 🇺🇸优选, 🤖优选, 🚀Proxy]}
+  - {name: 🔍Google, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸优选, 🤖优选, 🇯🇵优选, 🚀Proxy]}
+  - {name: 🍿Emby, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖优选, 🇺🇸优选, 🇯🇵优选, 🚀Proxy]}
+  - {name: 🇭🇰, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)香港"}
+  - {name: 🇯🇵, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)日本"}
+  - {name: 🇸🇬, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)新加坡"}
+  - {name: 🇺🇸, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)美国"}
+  - {name: 🤖, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: "(?i)原生"}
+  - {name: 🕸Match, type: select, proxies: [DIRECT, 🚀Proxy]}
+#分流规则
+rules:
+  # Private
+  - RULE-SET,private,DIRECT
+  - RULE-SET,private-ip,DIRECT,no-resolve
+  # Personal
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,Proxy,🚀Proxy
+  - RULE-SET,Emby,🍿Emby
+  # Direct
+  - RULE-SET,apple-cn,DIRECT
+  - RULE-SET,apple@cn,DIRECT
+  - RULE-SET,microsoft@cn,DIRECT
+  # Proxy
+  - RULE-SET,openai,💬ChatGPT
+  - RULE-SET,category-ai-!cn,💬ChatGPT
+  - RULE-SET,google,🔍Google
+  - RULE-SET,x,🔍Google
+  - RULE-SET,meta,🔍Google
+  - RULE-SET,telegram,🚀Proxy
+  - RULE-SET,telegram-ip,🚀Proxy
+  # Ads
+  - RULE-SET,category-ads-all,REJECT
+  # Cn
+  - RULE-SET,cn,DIRECT
+  - RULE-SET,cn-ip,DIRECT,no-resolve
+  # Gfw
+  - RULE-SET,gfw,🚀Proxy
+  - RULE-SET,geolocation-!cn,🚀Proxy
+  # Match
+  - MATCH,🕸Match
+# 规则集锚点
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain-mrs: &domain-mrs {type: http, interval: 86400, behavior: domain, format: mrs}
+  domain-yaml: &domain-yaml {type: http, interval: 86400, behavior: domain, format: yaml}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+# 规则集源
+rule-providers: 
+  # Private
+  private: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  private-ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
+  # Personal
+  Direct: {<<: *domain-yaml, url: "https://raw.githubusercontent.com/SunxinAn/rules/refs/heads/main/Direct.yaml"}
+  Proxy: {<<: *domain-yaml, url: "https://raw.githubusercontent.com/SunxinAn/rules/refs/heads/main/Proxy.yaml"}
+  Emby: {<<: *domain-yaml, url: "https://raw.githubusercontent.com/SunxinAn/rules/refs/heads/main/Emby.yaml"}
+  # Direct
+  apple-cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs" }
+  apple@cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs" }
+  microsoft@cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs" }
+  # Proxy
+  openai: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs" }
+  category-ai-!cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
+  google: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  x: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs"}
+  meta: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/meta.mrs"}
+  telegram: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  telegram-ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  # Ads
+  category-ads-all: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs"}
+  # Cn
+  cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  cn-ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  # Gfw
+  gfw: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
+  geolocation-!cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  # Fakeip
+  fakeip-filter: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/refs/heads/release/fakeip-filter.mrs"}
