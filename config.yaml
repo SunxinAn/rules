@@ -1,14 +1,5 @@
 # Airport
 proxy-providers:
-  V2:
-    url: "https://sub.g-2.top:4396/v2ray20S7.txt"
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-    proxy: DIRECT
   Pokemon:
     url: "https://link123.52pokemon66.cc/api/v1/client/subscribe?token=01a43902f910ccbf0c42d25e3fc4f098"
     type: http
