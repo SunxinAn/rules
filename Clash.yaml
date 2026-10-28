@@ -73,13 +73,13 @@ dns:
     - https://dns.google/dns-query
 # 出站策略
 proxy-groups:
-  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true}
-  - {name: 💬ChatGPT, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇯🇵优选, 🇺🇸优选, 🤖优选, 🚀Proxy]}
-  - {name: 🔍Google, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸优选, 🤖优选, 🇯🇵优选, 🚀Proxy]}
-  - {name: 🍿Emby, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖优选, 🇺🇸优选, 🇯🇵优选, 🚀Proxy]}
-  - {name: 🇯🇵优选, type: select, include-all: true, filter: "(?=.*(日本))^((?!(IPLC|ws)).)*$"}
-  - {name: 🇺🇸优选, type: select, include-all: true, filter: "(?=.*(美国))^((?!(IPLC|ws)).)*$"}
-  - {name: 🤖优选, type: select, include-all: true, filter: "(?i)reality"}
+  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i)^(香港1-BWG-CMI|美国8-DMIT|美国1-VPS-9929|日本3-GC|新加坡1-腾讯云|美国5-Spartan|美国6-BWG-GIA|美国7-ByteVirt|美国9-BWG-GIA2)$'}
+  - {name: 💬ChatGPT, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🌏优选, 🇺🇸优选, 🤖优选, 🚀Proxy]}
+  - {name: 🔍Google, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸优选, 🤖优选, 🌏优选, 🚀Proxy]}
+  - {name: 🍿Emby, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖优选, 🇺🇸优选, 🌏优选, 🚀Proxy]}
+  - {name: 🌏优选, type: select, include-all: true, filter: '(?i)^(日本3-GC|新加坡1-腾讯云)$'}
+  - {name: 🇺🇸优选, type: select, include-all: true, filter: '(?i)^(美国8-DMIT|美国1-VPS-9929|美国5-Spartan|美国6-BWG-GIA|美国7-ByteVirt|美国9-BWG-GIA2)$'}
+  - {name: 🤖优选, type: select, include-all: true, filter: '(?i)^(香港1-BWG-CMI|美国8-DMIT|美国1-VPS-9929|日本3-GC|新加坡1-腾讯云|美国5-Spartan|美国6-BWG-GIA|美国7-ByteVirt|美国9-BWG-GIA2)$'}
   - {name: 🕸Match, type: select, proxies: [DIRECT, 🚀Proxy]}
 #分流规则
 rules:
