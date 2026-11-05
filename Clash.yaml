@@ -72,13 +72,13 @@ dns:
     - https://dns.google/dns-query
 # 出站策略
 proxy-groups:
-  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i)^(?=.*(hy2)).*$'}
+  - {name: 🚀Proxy, type: url-test, url: https://www.gstatic.com/generate_204, interval: 60, tolerance: 10, include-all: true, filter: '(?i)ivp6', exclude-filter: '(?i)vmess'}
   - {name: 💬ChatGPT, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🌏优选, 🇺🇸优选, 🤖优选, 🚀Proxy]}
   - {name: 🔍Google, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸优选, 🤖优选, 🌏优选, 🚀Proxy]}
   - {name: 🍿Emby, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖优选, 🇺🇸优选, 🌏优选, 🚀Proxy]}
-  - {name: 🌏优选, type: select, include-all: true, filter: '(?i)^(?=.*(香港|日本|新加坡))(?=.*(hy2)).*$'}
-  - {name: 🇺🇸优选, type: select, include-all: true, filter: '(?i)^(?=.*美国)(?=.*(hy2)).*$'}
-  - {name: 🤖优选, type: select, include-all: true, filter: '(?i)^(?=.*(hy2)).*$'}
+  - {name: 🌏优选, type: select, include-all: true, filter: '(?i)(?=.*ivp6)(?=.*(香港|日本|新加坡))', exclude-filter: '(?i)vmess'}
+  - {name: 🇺🇸优选, type: select, include-all: true, filter: '(?i)(?=.*ivp6)(?=.*美国)', exclude-filter: '(?i)vmess'}
+  - {name: 🤖优选, type: select, include-all: true, filter: '(?i)ivp6', exclude-filter: '(?i)vmess'}
   - {name: 🕸Match, type: select, proxies: [DIRECT, 🚀Proxy]}
 #分流规则
 rules:
@@ -95,7 +95,7 @@ rules:
   - RULE-SET,microsoft@cn,DIRECT
   # Proxy
   - RULE-SET,openai,💬ChatGPT
-  - RULE-SET,category-ai-!cn,💬ChatGPT
+  - RULE-SET,category-ai-!cn,🔍Google
   - RULE-SET,google,🔍Google
   - RULE-SET,x,🔍Google
   - RULE-SET,meta,🔍Google
