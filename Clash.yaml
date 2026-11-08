@@ -86,6 +86,7 @@ rules:
   - RULE-SET,private,DIRECT
   - RULE-SET,private-ip,DIRECT,no-resolve
   # Personal
+  - RULE-SET,Pcdn,REJECT
   - RULE-SET,Direct,DIRECT
   - RULE-SET,Proxy,🚀Proxy
   - RULE-SET,Emby,🍿Emby
@@ -123,6 +124,7 @@ rule-providers:
   private: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   private-ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
   # Personal
+  Pcdn: {<<: *domain-yaml, url: "https://raw.githubusercontent.com/SunxinAn/rules/refs/heads/main/Pcdn.yaml"}
   Direct: {<<: *domain-yaml, url: "https://raw.githubusercontent.com/SunxinAn/rules/refs/heads/main/Direct.yaml"}
   Proxy: {<<: *domain-yaml, url: "https://raw.githubusercontent.com/SunxinAn/rules/refs/heads/main/Proxy.yaml"}
   Emby: {<<: *domain-yaml, url: "https://raw.githubusercontent.com/SunxinAn/rules/refs/heads/main/Emby.yaml"}
