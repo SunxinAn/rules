@@ -76,7 +76,7 @@ proxy-groups:
   - {name: 💬ChatGPT, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🤖,🇺🇸vless,🇺🇸hy2]}
   - {name: 🔍Google, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🇺🇸vless,🇺🇸hy2,🚀Proxy]}
   - {name: 🍿Emby, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, proxies: [🎫vless,🎫hy2,🚀Proxy]}
-  - {name: 🤖, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, include-all: true, filter: '(?i)(日本)', exclude-filter: '(?i)(vmess|vless)'}
+  - {name: 🤖, type: fallback, url: https://www.gstatic.com/generate_204, interval: 60, timeout: 2000, fail-count: 1, include-all: true, filter: '(?i)(日本)', exclude-filter: '(?i)(vmess)'}
   - {name: 🇺🇸vless, type: select, include-all: true, filter: '(?i)美国', exclude-filter: '(?i)(vmess|hy2)'}
   - {name: 🇺🇸hy2, type: select, include-all: true, filter: '(?i)美国', exclude-filter: '(?i)(vmess|vless)'}
   - {name: 🎫vless, type: select, include-all: true, exclude-filter: '(?i)(vmess|hy2)'}
