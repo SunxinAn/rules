@@ -37,7 +37,7 @@ payload:
   - '+.ppio.net.cn'
 
   # Bilibili PCDN
-  - '*pcdn*.biliapi.net'
+  - '+.pcdn.biliapi.net'
   - '+.mcdn.bilivideo.cn'
   - '+.mcdn.bilivideo.com'
   - '+.ppio.bilivideo.com'
